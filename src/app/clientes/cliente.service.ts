@@ -11,6 +11,6 @@ export class ClienteService {
   constructor() { }
 
   getClientes(): Observable<Cliente[]>{
-    return of(CLIENTES);
+    return of(CLIENTES); // of() Convertimos nuestro listado clientes en un observable, en este caso en un string.
   };
 }
