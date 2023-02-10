@@ -19,37 +19,34 @@ export class ClienteService {
 
   constructor(private http:HttpClient, private router: Router) { }
 
-  getClientes(): Observable<Cliente[]>{
+  getClientes(page: number): Observable<any>{
     //return of(CLIENTES); // of() Convertimos nuestro listado clientes en un observable, en este caso en un string.
     //return this.http.get<Cliente[]>(this.urlEndPoint)  //una forma casteada
-    return this.http.get(this.urlEndPoint).pipe( //metodo pipe, permite agregar mas operadores.
-      tap(response => {
-        let clientes = response as Cliente[];
+    return this.http.get(this.urlEndPoint + '/page/' + page).pipe( //metodo pipe, permite agregar mas operadores.
+      tap((response: any) => {
         console.log("ClienteService | Tap 1");
-        clientes.forEach(cliente => {
+        (response.content as Cliente[]).forEach(cliente => {
           
           console.log(cliente.nombre);
         });
         }
       ),
-      map(response => {
+      map((response: any) => {
         
-        let clientes = response as Cliente[];
-
-        return clientes.map(cliente =>{
+          (response.content as Cliente[]).map(cliente =>{
           cliente.nombre= cliente.nombre.toUpperCase();
-          let datePipe = new DatePipe('es');
-          
+          //let datePipe = new DatePipe('es');          
           //cliente.createAt = datePipe.transform(cliente.createAt, 'EEEE dd, MMMM yyyy');
           //cliente.createAt = formatDate(cliente.createAt, 'dd-MM-yyyy', 'en-US')
           return cliente;
         });
+        return response;
       }),
       tap(response => {
-        let clientes = response as Cliente[];
+        
         console.log("ClienteService | Tap 2");
 
-        clientes.forEach(cliente => {
+        (response.content as Cliente[]).forEach(cliente => {
           console.log(cliente.nombre);
         });
         }
