@@ -23,7 +23,7 @@ export class ClientesComponent implements OnInit {
 
     this.activatedRoute.paramMap.subscribe( params =>{
 
-      let page: number  = +params.get('page');
+      let page: number  = + params.get('page');
       if(!page){
         page=0;
       }
@@ -32,12 +32,9 @@ export class ClientesComponent implements OnInit {
         tap(response =>{
           console.log("ClientesComponent | Tap 3");
   
-          (response.content as Cliente[]).forEach(cliente => {
-            console.log(cliente.nombre);
-          });
+          (response.content as Cliente[]).forEach(cliente => console.log(cliente.nombre));
         })
-      )
-      .subscribe(response => {
+      ).subscribe(response => {
         this.clientes = response.content as Cliente[]
         this.paginador = response;
         }); // Funcion anonima.

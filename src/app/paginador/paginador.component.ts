@@ -4,7 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
   selector: 'paginador-nav',
   templateUrl: './paginador.component.html'
 })
-export class PaginadorComponent {
+export class PaginadorComponent implements OnInit {
   
   @Input() paginador:any;
 

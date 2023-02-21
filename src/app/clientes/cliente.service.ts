@@ -31,8 +31,7 @@ export class ClienteService {
         });
         }
       ),
-      map((response: any) => {
-        
+      map((response: any) => {        
           (response.content as Cliente[]).map(cliente =>{
           cliente.nombre= cliente.nombre.toUpperCase();
           //let datePipe = new DatePipe('es');          
