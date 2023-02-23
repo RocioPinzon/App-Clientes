@@ -8,6 +8,8 @@ import swal from 'sweetalert2';
   selector: 'app-form',
   templateUrl: './form.component.html'
 })
+
+
 export class FormComponent implements OnInit{
 
   public cliente: Cliente = new Cliente(); //Deberia de poner private ?? pero no funciona. De momento Public
